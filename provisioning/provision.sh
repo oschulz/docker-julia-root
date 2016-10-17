@@ -1,17 +1,26 @@
 #!/bin/bash -e
 
-PROVISION_DIR=$((echo "${0}" | grep -q '^/') && dirname "${0}" || (cd "`pwd`/`dirname \"${0}\"`" && pwd))
-echo "Provisioning directory: \"${PROVISION_DIR}\""
+abs_dirname() {
+    (echo "${1}" | grep -q '^/') && dirname "${1}" || (cd "`pwd`/`dirname \"${1}\"`" && pwd)
+}
+
+abs_path() {
+    (echo "$1" | grep -q '^/') && echo "$1" || (cd "`pwd`/`dirname \"$1\"`" && echo "`pwd`/`basename \"$1\"`")
+}
+
+
+PROVISION_DIR=`abs_dirname "${0}"`
+echo "PROVISION_DIR=${PROVISION_DIR}" >&2
 
 SW_DIR="${SW_DIR:-/opt}"
+export SW_DIR=`abs_path "${SW_DIR}"`
+echo "SW_DIR=${SW_DIR}" >&2
 mkdir -p "${SW_DIR}"
-SW_DIR=$((echo "${SW_DIR}" | grep -q '^/') && echo "${SW_DIR}" || (cd "`pwd`/${SW_DIR}" && pwd))
 
+ENV_SCRIPT="${ENV_SCRIPT:-env.sh}"
+export ENV_SCRIPT=`abs_path "${ENV_SCRIPT}"`
+echo "ENV_SCRIPT=${ENV_SCRIPT}" >&2
 
 cd "${PROVISION_DIR}"
 
-# ./install-root.sh 6.06.06
-# ./install-julia.sh 0.5.0
-# ./install-cmake.sh 3.6.2
-# ./install-julia-cxx.sh
-# ./install-julia-root.sh
+./install-all.sh
