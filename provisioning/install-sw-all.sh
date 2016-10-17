@@ -8,3 +8,5 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 "${SCRIPT_DIR}"/install-sw-julia-cxx.sh
 "${SCRIPT_DIR}"/install-sw-rjulia.sh
+
+echo "INFO: Software installation complete." >&2

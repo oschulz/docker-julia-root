@@ -10,5 +10,3 @@ RUN provisioning/install-sw.sh
 #EXPOSE 8888
 
 #CMD /bin/bash
-
-echo "Provisioning complete." >&2
