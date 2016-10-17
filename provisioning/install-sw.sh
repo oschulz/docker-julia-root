@@ -1,5 +1,3 @@
-#!/bin/bash -e
-
 abs_dirname() {
     (echo "${1}" | grep -q '^/') && dirname "${1}" || (cd "`pwd`/`dirname \"${1}\"`" && pwd)
 }
@@ -20,7 +18,3 @@ mkdir -p "${SW_DIR}"
 ENV_SCRIPT="${ENV_SCRIPT:-env.sh}"
 export ENV_SCRIPT=`abs_path "${ENV_SCRIPT}"`
 echo "ENV_SCRIPT=${ENV_SCRIPT}" >&2
-
-cd "${PROVISION_DIR}"
-
-./install-all.sh
