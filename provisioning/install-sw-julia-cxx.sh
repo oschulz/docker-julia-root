@@ -2,9 +2,8 @@
 
 source "$(cd "$(dirname "$0")" && pwd)/install-sw-config.sh"
 
-echo "Installing Julia Cxx.jl ..." >&2
+echo "INFO: Installing Julia Cxx.jl ..." >&2
 
-ENV_SCRIPT="${ENV_SCRIPT:-env.sh}"
 source "${ENV_SCRIPT}"
 
 julia -e 'isfile(joinpath(Pkg.dir(), "METADATA")) || Pkg.init()'

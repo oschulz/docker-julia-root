@@ -2,9 +2,8 @@
 
 source "$(cd "$(dirname "$0")" && pwd)/install-sw-config.sh"
 
-echo "Adding rjulia binary for ROOT-6 compatibility to Julia installation ..." >&2
+echo "INFO: Adding rjulia binary for ROOT-6 compatibility to Julia installation ..." >&2
 
-ENV_SCRIPT="${ENV_SCRIPT:-env.sh}"
 source "${ENV_SCRIPT}"
 
 JULIA_HOME=`julia -e "println(JULIA_HOME)"`
