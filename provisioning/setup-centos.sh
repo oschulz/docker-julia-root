@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-yum update -y
+# yum update -y
 
 yum install -y \
     bzip2 \

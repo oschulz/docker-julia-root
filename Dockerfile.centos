@@ -1,10 +1,35 @@
-FROM cern/cc7-base
+FROM centos:7
+# FROM cern/cc7-base
 
 USER root
 
-COPY provisioning /root/provisioning
+RUN yum install -y \
+    bzip2 \
+    cmake \
+    gcc-c++ \
+    gcc-gfortran \
+    git \
+    libcurl \
+    libcurl-devel \
+    libcurl-openssl \
+    libSM \
+    libX11 \
+    libXext \
+    libXft \
+    libXpm \
+    m4 \
+    make \
+    nettle \
+    openssl \
+    openssl-devel \
+    openssl-libs \
+    patch \
+    tar \
+    vim
 
-#RUN provisioning/provision-centos.sh
+COPY provisioning /provisioning
+
+RUN provisioning/install-sw-all.sh
 
 #EXPOSE 8888
 
