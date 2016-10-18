@@ -29,5 +29,4 @@ test -d "${CXX_PKG_DIR}"
 )
 rm -rf "${CXX_PKG_DIR}/deps/tmp"
 
-
 julia -e 'Pkg.test("Cxx")'

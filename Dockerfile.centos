@@ -2,6 +2,7 @@ FROM centos:7
 # FROM cern/cc7-base
 
 USER root
+WORKDIR /root
 
 RUN yum install -y \
     bzip2 \
@@ -27,9 +28,9 @@ RUN yum install -y \
     tar \
     vim
 
-COPY provisioning /provisioning
+COPY provisioning /root/provisioning
 
-RUN provisioning/install-sw-all.sh
+RUN /root/provisioning/install-sw-all.sh
 
 #EXPOSE 8888
 
